@@ -1,0 +1,209 @@
+Wed 14 Aug 2024 22:36:28 INFO ██Server: 	DESKTOP-SVSUCBG
+Wed 14 Aug 2024 22:36:28 INFO ██Dir: 	C:\Users\Administrator\Desktop\MENTOR\src
+
+Wed 14 Aug 2024 22:36:28 INFO 
+gpu_id=0
+use_gpu=True
+seed=[999]
+data_path=../data/
+inter_splitting_label=x_label
+filter_out_cod_start_users=True
+is_multimodal_model=True
+checkpoint_dir=saved
+save_recommended_topk=True
+recommend_topk=recommend_topk/
+embedding_size=64
+weight_decay=0.0
+req_training=True
+epochs=1000
+stopping_step=20
+train_batch_size=2048
+learner=adam
+learning_rate=[0.0001]
+learning_rate_scheduler=[1.0, 50]
+eval_step=1
+training_neg_sample_num=1
+use_neg_sampling=True
+use_full_sampling=False
+NEG_PREFIX=neg__
+USER_ID_FIELD=userID
+ITEM_ID_FIELD=itemID
+TIME_FIELD=timestamp
+field_separator=	
+metrics=['Recall', 'NDCG', 'Precision', 'MAP']
+topk=[5, 10, 20, 50]
+valid_metric=Recall@10
+eval_batch_size=4096
+use_raw_features=False
+max_txt_len=32
+max_img_size=256
+vocab_size=30522
+type_vocab_size=2
+hidden_size=4
+pad_token_id=0
+max_position_embeddings=512
+layer_norm_eps=1e-12
+hidden_dropout_prob=0.1
+end2end=False
+hyper_parameters=['reg_weight', 'learning_rate', 'dropout', 'mask_weight_f', 'mask_weight_g', 'align_weight', 'temp', 'seed']
+inter_file_name=baby.inter
+vision_feature_file=image_feat.npy
+text_feature_file=text_feat.npy
+user_graph_dict_file=user_graph_dict.npy
+feat_embed_dim=64
+n_mm_layers=1
+n_layers=2
+knn_k=10
+mm_image_weight=0.1
+reg_weight=[0.001]
+dropout=[0.5]
+mask_weight_f=[1.5]
+mask_weight_g=[0.0001, 0.001]
+align_weight=[0.1]
+temp=[0.2, 0.4, 0.6]
+model=MENTOR
+dataset=Baby
+valid_metric_bigger=True
+device=cuda
+
+
+Wed 14 Aug 2024 22:36:28 INFO Baby
+The number of users: 19445
+Average actions of users: 8.269066598097197
+The number of items: 7050
+Average actions of items: 22.807375886524824
+The number of inters: 160792
+The sparsity of the dataset: 99.8827082752043%
+Wed 14 Aug 2024 22:36:28 INFO 
+====Training====
+Baby
+The number of users: 19445
+Average actions of users: 6.096734379017742
+The number of items: 7047
+Average actions of items: 16.82290336313325
+The number of inters: 118551
+The sparsity of the dataset: 99.9134846831415%
+Wed 14 Aug 2024 22:36:28 INFO 
+====Validation====
+Baby
+The number of users: 19445
+Average actions of users: 1.0572897917202366
+The number of items: 5483
+Average actions of items: 3.749589640707642
+The number of inters: 20559
+The sparsity of the dataset: 99.98071694707788%
+Wed 14 Aug 2024 22:36:28 INFO 
+====Testing====
+Baby
+The number of users: 19445
+Average actions of users: 1.1150424273592183
+The number of items: 5549
+Average actions of items: 3.907370697422959
+The number of inters: 21682
+The sparsity of the dataset: 99.97990552482683%
+Wed 14 Aug 2024 22:36:31 INFO 
+
+=================================
+
+
+Wed 14 Aug 2024 22:36:31 INFO =========1/6: Parameters:['reg_weight', 'learning_rate', 'dropout', 'mask_weight_f', 'mask_weight_g', 'align_weight', 'temp', 'seed']=(0.001, 0.0001, 0.5, 1.5, 0.0001, 0.1, 0.2, 999)=======
+Wed 14 Aug 2024 22:36:32 INFO MENTOR(
+  (mlp): Linear(in_features=128, out_features=128, bias=True)
+  (image_embedding): Embedding(7050, 4096)
+  (image_trs): Linear(in_features=4096, out_features=64, bias=True)
+  (text_embedding): Embedding(7050, 384)
+  (text_trs): Linear(in_features=384, out_features=64, bias=True)
+  (MLP_user): Linear(in_features=128, out_features=64, bias=True)
+  (v_gcn): GCN(
+    (MLP): Linear(in_features=4096, out_features=256, bias=True)
+    (MLP_1): Linear(in_features=256, out_features=64, bias=True)
+    (conv_embed_1): Base_gcn(64, 64)
+  )
+  (v_gcn_n1): GCN(
+    (MLP): Linear(in_features=4096, out_features=256, bias=True)
+    (MLP_1): Linear(in_features=256, out_features=64, bias=True)
+    (conv_embed_1): Base_gcn(64, 64)
+  )
+  (v_gcn_n2): GCN(
+    (MLP): Linear(in_features=4096, out_features=256, bias=True)
+    (MLP_1): Linear(in_features=256, out_features=64, bias=True)
+    (conv_embed_1): Base_gcn(64, 64)
+  )
+  (t_gcn): GCN(
+    (MLP): Linear(in_features=384, out_features=256, bias=True)
+    (MLP_1): Linear(in_features=256, out_features=64, bias=True)
+    (conv_embed_1): Base_gcn(64, 64)
+  )
+  (t_gcn_n1): GCN(
+    (MLP): Linear(in_features=384, out_features=256, bias=True)
+    (MLP_1): Linear(in_features=256, out_features=64, bias=True)
+    (conv_embed_1): Base_gcn(64, 64)
+  )
+  (t_gcn_n2): GCN(
+    (MLP): Linear(in_features=384, out_features=256, bias=True)
+    (MLP_1): Linear(in_features=256, out_features=64, bias=True)
+    (conv_embed_1): Base_gcn(64, 64)
+  )
+  (id_gcn): GCN(
+    (MLP): Linear(in_features=64, out_features=256, bias=True)
+    (MLP_1): Linear(in_features=256, out_features=64, bias=True)
+    (conv_embed_1): Base_gcn(64, 64)
+  )
+)
+Trainable parameters: 44685118
+Wed 14 Aug 2024 22:36:42 INFO epoch 0 training [time: 9.40s, train loss: 220.4223]
+Wed 14 Aug 2024 22:36:46 INFO epoch 0 evaluating [time: 1.80s, valid_score: 0.029600]
+Wed 14 Aug 2024 22:36:46 INFO valid result: 
+recall@5: 0.0197    recall@10: 0.0296    recall@20: 0.0485    recall@50: 0.0921    ndcg@5: 0.0128    ndcg@10: 0.0161    ndcg@20: 0.0209    ndcg@50: 0.0296    precision@5: 0.0041    precision@10: 0.0031    precision@20: 0.0026    precision@50: 0.0019    map@5: 0.0104    map@10: 0.0118    map@20: 0.0130    map@50: 0.0144    
+Wed 14 Aug 2024 22:36:46 INFO test result: 
+recall@5: 0.0189    recall@10: 0.0295    recall@20: 0.0494    recall@50: 0.0946    ndcg@5: 0.0124    ndcg@10: 0.0160    ndcg@20: 0.0210    ndcg@50: 0.0301    precision@5: 0.0042    precision@10: 0.0033    precision@20: 0.0027    precision@50: 0.0021    map@5: 0.0100    map@10: 0.0114    map@20: 0.0127    map@50: 0.0141    
+Wed 14 Aug 2024 22:36:46 INFO ██ MENTOR--Best validation results updated!!!
+Wed 14 Aug 2024 22:36:55 INFO epoch 1 training [time: 9.41s, train loss: 214.4815]
+Wed 14 Aug 2024 22:36:59 INFO epoch 1 evaluating [time: 1.82s, valid_score: 0.031900]
+Wed 14 Aug 2024 22:36:59 INFO valid result: 
+recall@5: 0.0205    recall@10: 0.0319    recall@20: 0.0516    recall@50: 0.0965    ndcg@5: 0.0133    ndcg@10: 0.0170    ndcg@20: 0.0220    ndcg@50: 0.0309    precision@5: 0.0043    precision@10: 0.0034    precision@20: 0.0027    precision@50: 0.0020    map@5: 0.0108    map@10: 0.0123    map@20: 0.0136    map@50: 0.0149    
+Wed 14 Aug 2024 22:36:59 INFO test result: 
+recall@5: 0.0201    recall@10: 0.0313    recall@20: 0.0523    recall@50: 0.0981    ndcg@5: 0.0130    ndcg@10: 0.0167    ndcg@20: 0.0221    ndcg@50: 0.0312    precision@5: 0.0044    precision@10: 0.0035    precision@20: 0.0029    precision@50: 0.0022    map@5: 0.0103    map@10: 0.0118    map@20: 0.0132    map@50: 0.0146    
+Wed 14 Aug 2024 22:36:59 INFO ██ MENTOR--Best validation results updated!!!
+Wed 14 Aug 2024 22:37:08 INFO epoch 2 training [time: 9.42s, train loss: 209.6691]
+Wed 14 Aug 2024 22:37:12 INFO epoch 2 evaluating [time: 2.08s, valid_score: 0.035700]
+Wed 14 Aug 2024 22:37:12 INFO valid result: 
+recall@5: 0.0225    recall@10: 0.0357    recall@20: 0.0556    recall@50: 0.1049    ndcg@5: 0.0146    ndcg@10: 0.0189    ndcg@20: 0.0239    ndcg@50: 0.0337    precision@5: 0.0047    precision@10: 0.0038    precision@20: 0.0029    precision@50: 0.0022    map@5: 0.0118    map@10: 0.0135    map@20: 0.0149    map@50: 0.0164    
+Wed 14 Aug 2024 22:37:12 INFO test result: 
+recall@5: 0.0224    recall@10: 0.0358    recall@20: 0.0574    recall@50: 0.1061    ndcg@5: 0.0147    ndcg@10: 0.0190    ndcg@20: 0.0246    ndcg@50: 0.0343    precision@5: 0.0049    precision@10: 0.0039    precision@20: 0.0032    precision@50: 0.0023    map@5: 0.0117    map@10: 0.0134    map@20: 0.0149    map@50: 0.0164    
+Wed 14 Aug 2024 22:37:12 INFO ██ MENTOR--Best validation results updated!!!
+Wed 14 Aug 2024 22:37:22 INFO epoch 3 training [time: 9.66s, train loss: 205.4188]
+Wed 14 Aug 2024 22:37:26 INFO epoch 3 evaluating [time: 1.95s, valid_score: 0.039200]
+Wed 14 Aug 2024 22:37:26 INFO valid result: 
+recall@5: 0.0247    recall@10: 0.0392    recall@20: 0.0629    recall@50: 0.1145    ndcg@5: 0.0162    ndcg@10: 0.0209    ndcg@20: 0.0269    ndcg@50: 0.0372    precision@5: 0.0051    precision@10: 0.0041    precision@20: 0.0033    precision@50: 0.0024    map@5: 0.0133    map@10: 0.0152    map@20: 0.0168    map@50: 0.0184    
+Wed 14 Aug 2024 22:37:26 INFO test result: 
+recall@5: 0.0261    recall@10: 0.0414    recall@20: 0.0647    recall@50: 0.1146    ndcg@5: 0.0171    ndcg@10: 0.0221    ndcg@20: 0.0281    ndcg@50: 0.0381    precision@5: 0.0057    precision@10: 0.0045    precision@20: 0.0036    precision@50: 0.0025    map@5: 0.0138    map@10: 0.0157    map@20: 0.0173    map@50: 0.0189    
+Wed 14 Aug 2024 22:37:26 INFO ██ MENTOR--Best validation results updated!!!
+Wed 14 Aug 2024 22:37:36 INFO epoch 4 training [time: 9.75s, train loss: 201.6582]
+Wed 14 Aug 2024 22:37:39 INFO epoch 4 evaluating [time: 1.88s, valid_score: 0.042300]
+Wed 14 Aug 2024 22:37:39 INFO valid result: 
+recall@5: 0.0264    recall@10: 0.0423    recall@20: 0.0690    recall@50: 0.1239    ndcg@5: 0.0173    ndcg@10: 0.0224    ndcg@20: 0.0292    ndcg@50: 0.0402    precision@5: 0.0055    precision@10: 0.0044    precision@20: 0.0036    precision@50: 0.0026    map@5: 0.0142    map@10: 0.0162    map@20: 0.0180    map@50: 0.0198    
+Wed 14 Aug 2024 22:37:39 INFO test result: 
+recall@5: 0.0280    recall@10: 0.0448    recall@20: 0.0697    recall@50: 0.1223    ndcg@5: 0.0185    ndcg@10: 0.0240    ndcg@20: 0.0303    ndcg@50: 0.0409    precision@5: 0.0061    precision@10: 0.0049    precision@20: 0.0038    precision@50: 0.0027    map@5: 0.0149    map@10: 0.0171    map@20: 0.0188    map@50: 0.0204    
+Wed 14 Aug 2024 22:37:39 INFO ██ MENTOR--Best validation results updated!!!
+Wed 14 Aug 2024 22:37:49 INFO epoch 5 training [time: 9.57s, train loss: 198.8409]
+Wed 14 Aug 2024 22:37:53 INFO epoch 5 evaluating [time: 1.98s, valid_score: 0.045300]
+Wed 14 Aug 2024 22:37:53 INFO valid result: 
+recall@5: 0.0274    recall@10: 0.0453    recall@20: 0.0722    recall@50: 0.1289    ndcg@5: 0.0178    ndcg@10: 0.0236    ndcg@20: 0.0304    ndcg@50: 0.0417    precision@5: 0.0057    precision@10: 0.0047    precision@20: 0.0038    precision@50: 0.0027    map@5: 0.0145    map@10: 0.0168    map@20: 0.0186    map@50: 0.0204    
+Wed 14 Aug 2024 22:37:53 INFO test result: 
+recall@5: 0.0292    recall@10: 0.0470    recall@20: 0.0721    recall@50: 0.1283    ndcg@5: 0.0197    ndcg@10: 0.0256    ndcg@20: 0.0320    ndcg@50: 0.0433    precision@5: 0.0064    precision@10: 0.0052    precision@20: 0.0040    precision@50: 0.0028    map@5: 0.0161    map@10: 0.0184    map@20: 0.0201    map@50: 0.0219    
+Wed 14 Aug 2024 22:37:53 INFO ██ MENTOR--Best validation results updated!!!
+Wed 14 Aug 2024 22:38:02 INFO epoch 6 training [time: 9.52s, train loss: 196.2184]
+Wed 14 Aug 2024 22:38:06 INFO epoch 6 evaluating [time: 1.87s, valid_score: 0.047700]
+Wed 14 Aug 2024 22:38:06 INFO valid result: 
+recall@5: 0.0293    recall@10: 0.0477    recall@20: 0.0747    recall@50: 0.1339    ndcg@5: 0.0190    ndcg@10: 0.0250    ndcg@20: 0.0319    ndcg@50: 0.0436    precision@5: 0.0061    precision@10: 0.0050    precision@20: 0.0039    precision@50: 0.0028    map@5: 0.0154    map@10: 0.0179    map@20: 0.0197    map@50: 0.0215    
+Wed 14 Aug 2024 22:38:06 INFO test result: 
+recall@5: 0.0296    recall@10: 0.0483    recall@20: 0.0743    recall@50: 0.1349    ndcg@5: 0.0201    ndcg@10: 0.0262    ndcg@20: 0.0329    ndcg@50: 0.0451    precision@5: 0.0065    precision@10: 0.0053    precision@20: 0.0041    precision@50: 0.0030    map@5: 0.0164    map@10: 0.0189    map@20: 0.0207    map@50: 0.0226    
+Wed 14 Aug 2024 22:38:06 INFO ██ MENTOR--Best validation results updated!!!
+Wed 14 Aug 2024 22:38:16 INFO epoch 7 training [time: 9.67s, train loss: 194.6397]
+Wed 14 Aug 2024 22:38:20 INFO epoch 7 evaluating [time: 2.02s, valid_score: 0.048400]
+Wed 14 Aug 2024 22:38:20 INFO valid result: 
+recall@5: 0.0302    recall@10: 0.0484    recall@20: 0.0760    recall@50: 0.1374    ndcg@5: 0.0196    ndcg@10: 0.0255    ndcg@20: 0.0325    ndcg@50: 0.0447    precision@5: 0.0063    precision@10: 0.0051    precision@20: 0.0040    precision@50: 0.0029    map@5: 0.0158    map@10: 0.0182    map@20: 0.0201    map@50: 0.0220    
+Wed 14 Aug 2024 22:38:20 INFO test result: 
+recall@5: 0.0312    recall@10: 0.0497    recall@20: 0.0768    recall@50: 0.1379    ndcg@5: 0.0210    ndcg@10: 0.0271    ndcg@20: 0.0340    ndcg@50: 0.0464    precision@5: 0.0069    precision@10: 0.0055    precision@20: 0.0042    precision@50: 0.0031    map@5: 0.0171    map@10: 0.0196    map@20: 0.0214    map@50: 0.0234    
+Wed 14 Aug 2024 22:38:20 INFO ██ MENTOR--Best validation results updated!!!
